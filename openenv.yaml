@@ -1,0 +1,38 @@
+spec_version: "1.0"
+name: "ecommerce_bot"
+version: "0.1.0"
+description: "An AI agent for managing e-commerce order updates and support triage."
+
+# CRITICAL: Tells the validator where your FastAPI app lives
+entry_point: "server.app:app"
+
+# Defining the 3 required tasks (Easy, Medium, Hard)
+tasks:
+  - id: "address_update_101"
+    name: "Update Order Address"
+    difficulty: "easy"
+    description: "Update shipping address for order 101 to '789 Bandra West'."
+    goal: "Set address of 101 to '789 Bandra West'"
+    grader: "programmatic" # Tells the system to look for your internal scoring logic
+
+  - id: "status_check_102"
+    name: "Order Status Query"
+    difficulty: "medium"
+    description: "Retrieve current status for order 102."
+    goal: "Verify order 102 status is 'Shipped'"
+    grader: "programmatic"
+
+  - id: "refund_processing_103"
+    name: "Partial Refund"
+    difficulty: "hard"
+    description: "Issue a 50% refund (250) for the delayed order 103."
+    goal: "Process 250 refund and update status to 'Refunded'"
+    grader: "programmatic"
+
+# Infrastructure constraints (Matches Hackathon Limits)
+runtime:
+  type: "docker"
+  image: "ecommerce_bot_env:latest"
+  resources:
+    cpu: 2
+    memory: "8GB"
